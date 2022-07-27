@@ -149,7 +149,7 @@ get_sample_generator = function(sample_annot, edge_distance, region_diameter, de
 
   # find tumour center
   if (find_center) {
-    .get_center = function(x) as.numeric(round(add_center_position(x, 10000)$estimated_center))
+    .get_center = function(x) as.numeric(round(CHESS::add_center_position(x, 10000)$estimated_center))
   } else {
     .get_center = function(x) with(x$params, c(x,y,z) / 2)
   }

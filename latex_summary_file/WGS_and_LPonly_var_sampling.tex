@@ -1,0 +1,135 @@
+\documentclass[]{article}
+\usepackage{tikz}
+\usepackage{placeins}
+\usepackage{hyperref}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{geometry}
+\captionsetup[subfigure]{labelformat=empty}
+
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=10mm,
+	right=10mm,
+	top=10mm,
+	bottom=15mm,
+}
+
+
+\title{EPICC Inferences Summary (WGS \& LP)}
+\author{}
+\newcommand{\resultfolder}{../inference_results/abc_smc/including_lp_pushing_to_edge/alma_5000x200x1_alpha_0.95_overdispersed_v3_popsize_100000}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Summary of model selection}
+
+\begin{figure}[h!]
+	\centering	\includegraphics[width=0.35\linewidth]{/Users/theide/Workspace/EPICC_inference/inference_plots/posteriors_update/Variable Sampling/model_selection_total_numbers_aic_delta_aic.pdf}
+	\caption{Number of selected models.}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering	\includegraphics[width=0.7\linewidth]{/Users/theide/Workspace/EPICC_inference/inference_plots/posteriors_update/Variable Sampling/posterior_model_fits/posterior_model_fitsAIC2_sl.pdf}
+	\caption{Posterior parameter distribution.}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.25\linewidth]{/Users/theide/Workspace/EPICC_inference/inference_plots/posteriors_update/Variable Sampling/classification_vs_tips_Variable Sampling_AIC2_sl.pdf}
+	\caption{Number of tips per model type.}
+\end{figure}
+
+\clearpage
+
+\section{Table of model selection stats}
+\input{/Users/theide/Workspace/EPICC_inference/inference_plots/posteriors_update/tex_tables/Variable_Sampling_-_WGS___LP.tex}
+
+\clearpage
+				
+	\section{Model selection data}
+	\foreach \pat\patname in {C516/C516,C518/C518,C519/C519,C524/C524,C525/C525,C527/C527,C528/C528,C530/C530,C531.2/C531 (excl. D1-G7),C532/C532,C536/C536,C537/C537,C538/C538,C539/C539,C542/C542,C543.2/C543 (excl. A1-G9),C544/C544,C547/C547,C548/C548,C549/C549,C550/C550,C551/C551,C552/C552,C554/C554,C555/C555,C559/C559,C560/C560,C561/C561,C562/C562}{
+		
+	\IfFileExists{\resultfolder/\pat/model_selection_results_f2_syn_lik_bs_alt_aic_only.pdf}{ %/
+	
+	\subsection{\patname}
+			
+			\vspace{-4mm}
+			
+			\begin{figure}[H]
+				\centering
+				\subfloat[]{\includegraphics[trim=0 0 0 20, clip, height=5cm]{\resultfolder/\pat//model_selection_results_f2_syn_lik_bs_alt_aic_only}}
+				\qquad
+				\subfloat[]{\includegraphics[trim=0 -60 0 20, clip, height=4.5cm]{\resultfolder/\pat//model_selection_results_f2_sl_range_of_eps_vs_aic2}}
+				\label{fig:aic\pat}
+				\caption*{}
+			\end{figure}
+			
+			\FloatBarrier
+			
+			\vspace{-18mm}
+			
+			\begin{figure}[h!]
+				\subfloat[]{{\includegraphics[trim=0 90 900 0, clip, height=3cm]{\resultfolder/\pat//neutral_no_death_push_regionsize_dispersion/best_fit} }}
+				\qquad
+				\centering
+				\subfloat[]{{ \includegraphics[trim=6 10 5 20, clip, height=3cm]{\resultfolder/\pat//neutral_no_death_push_regionsize_dispersion/model_fit_f2} }}
+				\qquad
+				\subfloat[]{{ \includegraphics[trim=5 10 5 20, clip, height=3cm]{\resultfolder/\pat//selection_no_death_push_regionsize_dispersion/model_fit_f2} }}
+				\qquad
+				\IfFileExists{\resultfolder/\pat/selection_2_no_death_push_regionsize_dispersion/done.txt}{ %/
+				\subfloat[]{{ \includegraphics[trim=5 5 5 20, clip, height=3cm]{\resultfolder/\pat//selection_2_no_death_push_regionsize_dispersion/model_fit_f2} }}
+				}{}
+				\label{fig:fit\pat}
+				\caption*{}
+			\end{figure}
+						
+		\vspace{-15mm}
+			
+		\foreach \model\modelname in {neutral_no_death_push_regionsize_dispersion/Neutral,selection_no_death_push_regionsize_dispersion/Selection,selection_2_no_death_push_regionsize_dispersion/2x Selection} {	
+				
+				\IfFileExists{\resultfolder/\pat/\model/best_fit.pdf}{
+					
+					\subsection*{\modelname}			
+					\FloatBarrier					
+					\vspace{-12mm}				
+					\begin{figure}[h!]
+						\centering
+						\subfloat[]{{\includegraphics[trim=160 8 175 5, clip, height=4cm]{\resultfolder/\pat/\model/best_fit.pdf} }}%
+						\qquad  
+						\subfloat[]{{\includegraphics[trim=0 0 0 0, clip, height=4.5cm]{\resultfolder/\pat/\model//subclone_fractions} }}%
+						\label{fig:model_fit\pat\model}
+						\caption*{}
+					\end{figure}
+					\vspace{-18mm}
+				}{}
+			}
+			\begin{figure}[h!]
+			\centering
+			\IfFileExists{\resultfolder/\pat//selection_2_no_death_push_regionsize_dispersion/region_positions.pdf}{ %/
+				\subfloat[]{{ \includegraphics[trim=6 10 5 30, clip, height=8cm]{\resultfolder/\pat//neutral_no_death_push_regionsize_dispersion/region_positions} }}
+			}{}
+			\qquad
+			\IfFileExists{\resultfolder/\pat//selection_no_death_push_regionsize_dispersion/region_positions.pdf}{ %/
+				\subfloat[]{{ \includegraphics[trim=5 10 5 30, clip, height=8cm]{\resultfolder/\pat//selection_no_death_push_regionsize_dispersion/region_positions} }}	
+			}{}
+			\qquad
+			\IfFileExists{\resultfolder/\pat//selection_2_no_death_push_regionsize_dispersion/region_positions.pdf}{ %/
+				\subfloat[]{{ \includegraphics[trim=5 5 5 30, clip, height=8cm]{\resultfolder/\pat//selection_2_no_death_push_regionsize_dispersion/region_positions} }}
+			}{}
+		\end{figure}
+		 
+			\FloatBarrier
+			\clearpage		
+	}	}
+	
+\end{document}

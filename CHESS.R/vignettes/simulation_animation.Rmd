@@ -1,0 +1,55 @@
+---
+title: "Animation of a simulation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Animation of a simulation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(CHESS)
+library(gganimate)
+```
+
+
+## Taking of snapshots during the simulation
+During the simulation snapshots can be taken at given time points by passing these to the `new_simulation` constructor as follows:
+
+```{r create_simulation, results='hide'}
+sim = new_simulation(50, snapshot_times = 1:30^2) # takes snapshots at `snapshot_times`
+```
+
+## Animation of snapshots
+
+Snapshots taken during the simulation can then be converted to a *gganim object* by calling the `plot_animation_CHESS_S3` function: 
+
+```{r render_animation, fig.height=3, fig.height=3.8}
+anim = animate(sim) # get gganim object
+animate(anim) # render animation 
+```
+
+
+There are a couple of optional arguments that can be passed to the `animate` function. These are shortly demonstrated below. For more details please refer to the corresponding man page (see `?animate.CHESS_S3`). 
+
+### Different scaling of the axis labels
+```{r fig.height=3, fig.height=3.8}
+animate(sim, mm_per_dot = 0.01) # 
+```
+
+### Different background color of the simulated space
+```{r fig.height=3, fig.height=3.8}
+animate(sim, background_color = "gray5") # 
+```
+
+### Coloring of cells by different attributes
+```{r fig.height=3, fig.height=3.8}
+animate(sim, color_by = 'type') # 
+```

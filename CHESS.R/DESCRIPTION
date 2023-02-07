@@ -1,0 +1,60 @@
+Package: CHESS
+Type: Package
+Title: Cancer Heterogeneity with Spatial Simulations (CHESS)
+Version: 1.0.0
+Date: 2018-01-22
+Authors@R: as.person(c(
+    "Kate Chkhaidze <Kate.Chkhaidze@icr.ac.uk> [aut, cre]",
+    "Timon Heide <timon.heide@icr.ac.uk> [aut]"))
+Description: A simple spatial tumour simulator, including a parameter inference framework.
+LazyLoad: yes
+Depends: R (>= 3.0.2)
+Imports: 
+    methods, 
+    Rcpp (>= 0.12.14), 
+    BH (>= 1.69.0-1), 
+    ape (>= 5.0), 
+    magrittr (>= 1.5), 
+    data.table (>= 1.11.4), 
+    transport (>= 0.9-4), 
+    checkmate (>= 2.0.0),
+    gganimate (>= 1.0.6),
+    dplyr,
+    reshape,
+    cowplot (>= 1.0.0),
+    ggrepel, 
+    tidytree,
+    tibble,
+    phangorn,
+    gridExtra,
+    ggtree,
+    ggplot2,
+    abind,
+    ade4,
+    crayon,
+    extraDistr,
+    fields,
+    ggplotify,
+    ggtern,
+    pbapply,
+    pbmcapply,
+    reshape2,
+    scales,
+    tmvtnorm,
+    MLLPT,
+    quantreg
+LinkingTo: Rcpp, BH (>=	1.69.0-1)
+RcppModules: Universe
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+License: GPL-3
+Suggests: 
+    testthat (>= 2.1.0),
+    covr,
+    knitr,
+    rmarkdown,
+    mobster,
+    R.utils,
+    digest,
+    ggrastr
+VignetteBuilder: knitr
